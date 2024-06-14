@@ -36,7 +36,7 @@ export async function GET(request: Request) {
     }
 
     const playlistResponse = await youtube.playlistItems.list({
-      part: ["snippet", "player"],
+      part: ["snippet"],
       playlistId: uploadsPlaylistId,
       maxResults: 4,
     });
