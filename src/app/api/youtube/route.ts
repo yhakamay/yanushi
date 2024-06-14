@@ -10,10 +10,12 @@ const youtube = google.youtube({
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const channelId = searchParams.get("channelId");
+  // pageToken cannot be null, so we use undefined as the default value
+  const pageToken = searchParams.get("pageToken") ?? undefined;
 
   if (!channelId) {
     return NextResponse.json(
-      { error: "The channelId parameter is required" },
+      { error: "The channelId is required" },
       { status: 400 }
     );
   }
@@ -38,7 +40,8 @@ export async function GET(request: Request) {
     const playlistResponse = await youtube.playlistItems.list({
       part: ["snippet"],
       playlistId: uploadsPlaylistId,
-      maxResults: 4,
+      maxResults: 12,
+      pageToken: pageToken,
     });
 
     const videos: Video[] =
@@ -48,7 +51,14 @@ export async function GET(request: Request) {
         publishedAt: item.snippet?.publishedAt ?? "",
       })) ?? [];
 
-    return NextResponse.json(videos);
+    // add prevPageToken and nextPageToken to the response so that the client can use them for pagination
+    const response = {
+      videos,
+      prevPageToken: playlistResponse.data.prevPageToken,
+      nextPageToken: playlistResponse.data.nextPageToken,
+    };
+
+    return NextResponse.json(response);
   } catch (error) {
     return NextResponse.json(
       { error: "Internal Server Error" },
