@@ -5,20 +5,21 @@ export default async function VideoList() {
   const videos: Video[] = await fetchVideos(channelId);
 
   return (
-    <div className="flex flex-wrap gap-4 not-prose w-dvw">
+    <ul className="flex flex-wrap gap-4 not-prose w-dvw">
       {videos.map((video) => (
-        <iframe
-          key={video.videoId}
-          height={180}
-          width={320}
-          src={`https://www.youtube.com/embed/${video.videoId}`}
-          loading="lazy"
-          title={video.title}
-          allowFullScreen
-          className="rounded-lg"
-        ></iframe>
+        <li key={video.videoId}>
+          <iframe
+            height={180}
+            width={320}
+            src={`https://www.youtube.com/embed/${video.videoId}`}
+            loading="lazy"
+            title={video.title}
+            allowFullScreen
+            className="rounded-lg"
+          ></iframe>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
