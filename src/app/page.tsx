@@ -18,7 +18,7 @@ export default async function Home({
         <h1 className="text-4xl font-bold mb-8">やぬし</h1>
       </Link>
       <section>
-        <h2 className="text-3xl font-semibold mb-4">最近の動画</h2>
+        <h2 className="text-3xl font-semibold mb-4 sr-only">最近の動画</h2>
         <Suspense fallback={<VideoListSkeleton />}>
           <VideoList pageToken={pageToken} />
         </Suspense>
