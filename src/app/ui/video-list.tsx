@@ -34,6 +34,7 @@ export default async function VideoList({ pageToken }: { pageToken?: string }) {
           className="join-item btn btn-outline"
           href={`?pageToken=${prevPageToken}`}
           {...(prevPageToken === undefined && { disabled: true })}
+          aria-label="Previous page"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +55,7 @@ export default async function VideoList({ pageToken }: { pageToken?: string }) {
           className="join-item btn btn-outline"
           href={`?pageToken=${nextPageToken}`}
           {...(nextPageToken === undefined && { disabled: true })}
+          aria-label="Next page"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
