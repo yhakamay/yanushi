@@ -28,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} className="min-h-screen p-8 lg:p-12 overflow-x-hidden"`}
+      >
         {children}
         <Analytics />
       </body>
