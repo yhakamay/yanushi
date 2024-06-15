@@ -27,7 +27,7 @@ export default async function VideoList({ pageToken }: { pageToken?: string }) {
               <p className="group-hover:brightness-75 transition ease-in-out duration-200 line-clamp-2">
                 {video.title}
               </p>
-              <time className="text-xs text-gray-500">
+              <time className="text-xs text-gray-500 group-hover:brightness-90 transition ease-in-out duration-200">
                 {formatPublishedAt(video.publishedAt)}
               </time>
             </Link>
