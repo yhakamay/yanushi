@@ -1,4 +1,5 @@
 import { VideoResponse } from "@/interfaces/video-response";
+import Image from "next/image";
 import Link from "next/link";
 
 export default async function VideoList({ pageToken }: { pageToken?: string }) {
@@ -8,18 +9,23 @@ export default async function VideoList({ pageToken }: { pageToken?: string }) {
 
   return (
     <div className="flex flex-col not-prose w-full">
-      <ul className="flex flex-wrap gap-4 mb-4">
+      <ul className="flex flex-wrap gap-x-4 gap-y-8 mb-8">
         {videos.map((video) => (
-          <li key={video.videoId}>
-            <iframe
-              height={180}
-              width={320}
-              src={`https://www.youtube.com/embed/${video.videoId}`}
-              loading="lazy"
-              title={video.title}
-              allowFullScreen
-              className="rounded-lg"
-            ></iframe>
+          <li key={video.videoId} className="flex flex-col w-80">
+            <Link
+              href={`https://www.youtube.com/watch?v=${video.videoId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src={video.thumbnailUrl}
+                alt={video.title}
+                width={320}
+                height={180}
+                className="rounded-lg mb-4"
+              />
+              <p>{video.title}</p>
+            </Link>
           </li>
         ))}
       </ul>
