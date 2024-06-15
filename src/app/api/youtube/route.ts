@@ -49,6 +49,9 @@ export async function GET(request: Request) {
         title: item.snippet?.title ?? "",
         videoId: item.snippet?.resourceId?.videoId ?? "",
         publishedAt: item.snippet?.publishedAt ?? "",
+        // options: default, medium, high, standard, and maxres
+        // https://developers.google.com/youtube/v3/docs/thumbnails
+        thumbnailUrl: item.snippet?.thumbnails?.maxres?.url ?? "",
       })) ?? [];
 
     // add prevPageToken and nextPageToken to the response so that the client can use them for pagination
