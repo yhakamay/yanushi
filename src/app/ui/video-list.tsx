@@ -27,6 +27,9 @@ export default async function VideoList({ pageToken }: { pageToken?: string }) {
               <p className="group-hover:brightness-75 transition ease-in-out duration-200 line-clamp-2">
                 {video.title}
               </p>
+              <time className="text-xs text-gray-500">
+                {formatPublishedAt(video.publishedAt)}
+              </time>
             </Link>
           </li>
         ))}
@@ -99,4 +102,31 @@ async function fetchVideos(
   }
 
   return res.json();
+}
+
+function formatPublishedAt(publishedAt: string) {
+  const now = new Date();
+  const published = new Date(publishedAt);
+  const diff = now.getTime() - published.getTime();
+
+  const seconds = Math.floor(diff / 1000);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (seconds < 60) {
+    return `${seconds}秒前`;
+  } else if (minutes < 60) {
+    return `${minutes}分前`;
+  } else if (hours < 24) {
+    return `${hours}時間前`;
+  } else if (days < 7) {
+    return `${days}日前`;
+  } else {
+    return published.toLocaleDateString("ja-JP", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
 }
