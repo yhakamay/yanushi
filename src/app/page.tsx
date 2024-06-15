@@ -16,7 +16,7 @@ export default async function Home({
     <>
       <div className="navbar px-0">
         <div className="flex-1">
-          <Link href="/" className="btn btn-ghost text-xl font-bold px-0">
+          <Link href="/" className="text-xl font-bold">
             <h1>yanushi.me</h1>
           </Link>
         </div>
@@ -25,7 +25,6 @@ export default async function Home({
             href="https://www.youtube.com/@yanushi_sp"
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-square btn-ghost"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
