@@ -11,7 +11,7 @@ export default async function VideoList({ pageToken }: { pageToken?: string }) {
     <div className="flex flex-col not-prose w-full">
       <ul className="flex flex-wrap gap-x-4 gap-y-8 mb-8">
         {videos.map((video) => (
-          <li key={video.videoId} className="flex flex-col w-80">
+          <li key={video.videoId} className="flex flex-col w-80 group">
             <Link
               href={`https://www.youtube.com/watch?v=${video.videoId}`}
               target="_blank"
@@ -22,9 +22,11 @@ export default async function VideoList({ pageToken }: { pageToken?: string }) {
                 alt={video.title}
                 width={320}
                 height={180}
-                className="rounded-lg mb-4"
+                className="rounded-lg mb-4 group-hover:brightness-75 group-hover:scale-105 transition ease-in-out duration-200"
               />
-              <p>{video.title}</p>
+              <p className="group-hover:brightness-75 transition ease-in-out duration-200 line-clamp-2">
+                {video.title}
+              </p>
             </Link>
           </li>
         ))}
