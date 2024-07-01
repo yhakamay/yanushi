@@ -3,4 +3,5 @@ export interface Video {
   videoId: string;
   publishedAt: string;
   thumbnailUrl: string;
+  viewCount?: string | null;
 }

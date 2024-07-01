@@ -54,7 +54,21 @@ export async function GET(request: Request) {
         thumbnailUrl: item.snippet?.thumbnails?.maxres?.url ?? "",
       })) ?? [];
 
-    // add prevPageToken and nextPageToken to the response so that the client can use them for pagination
+    // Add viewCount to each video
+    // We cannot get viewCount from the playlistItems.list response
+    // https://developers.google.com/youtube/v3/docs/videos/list
+    videos.forEach(async (video) => {
+      video.viewCount = await youtube.videos
+        .list({
+          id: [video.videoId!],
+          part: ["statistics"],
+        })
+        .then((response) => {
+          return response.data.items?.[0]?.statistics?.viewCount;
+        });
+    });
+
+    // Add prevPageToken and nextPageToken to the response so that the client can use them for pagination
     const response = {
       videos,
       prevPageToken: playlistResponse.data.prevPageToken,
