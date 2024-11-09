@@ -38,32 +38,34 @@ export default async function Home(props: {
         </div>
       </div>
       <main>
-        <section>
-          <h2 className="text-3xl font-semibold mb-4 sr-only">自己紹介</h2>
-          <p>
-            スプラトゥーン歴1年。好きなものはホコとローラー、苦手なものはウルショともみじシューターです。
-          </p>
-          <h3 className="text--2xl font-semibold mb-4 sr-only">戦績</h3>
-          <div className="stats stats-vertical md:stats-horizontal shadow w-full my-4">
-            <div className="stat place-items-center">
-              <div className="stat-title">最高ウデマエ</div>
-              <div className="stat-value">S+11</div>
-              <div className="stat-desc">2023冬 Chill Season</div>
-            </div>
-            <div className="stat place-items-center">
-              <div className="stat-title">最高Xパワー</div>
-              <div className="stat-value text-primary">2180.0</div>
-              <div className="stat-desc">ガチホコバトル</div>
-            </div>
-            <div className="stat place-items-center">
-              <div className="stat-title">ランク</div>
-              <div className="stat-value">243</div>
-              <div className="stat-desc">
-                <time dateTime="2024-11-09">2024年11月9日現在</time>
+        {!pageToken && (
+          <section>
+            <h2 className="text-3xl font-semibold mb-4 sr-only">自己紹介</h2>
+            <p>
+              スプラトゥーン歴1年。好きなものはホコとローラー、苦手なものはウルショともみじシューターです。
+            </p>
+            <h3 className="text--2xl font-semibold mb-4 sr-only">戦績</h3>
+            <div className="stats stats-vertical md:stats-horizontal shadow w-full my-4">
+              <div className="stat place-items-center">
+                <div className="stat-title">最高ウデマエ</div>
+                <div className="stat-value">S+11</div>
+                <div className="stat-desc">2023冬 Chill Season</div>
+              </div>
+              <div className="stat place-items-center">
+                <div className="stat-title">最高Xパワー</div>
+                <div className="stat-value text-primary">2180.0</div>
+                <div className="stat-desc">ガチホコバトル</div>
+              </div>
+              <div className="stat place-items-center">
+                <div className="stat-title">ランク</div>
+                <div className="stat-value">243</div>
+                <div className="stat-desc">
+                  <time dateTime="2024-11-09">2024年11月9日現在</time>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
         <section>
           <h2 className="text-3xl font-semibold mb-4 sr-only">最近の動画</h2>
           <Suspense fallback={<VideoListSkeleton />}>
