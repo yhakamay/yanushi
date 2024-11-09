@@ -3,13 +3,14 @@ import VideoList from "./ui/video-list";
 import VideoListSkeleton from "./ui/video-list-skeleton";
 import Link from "next/link";
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams?: {
-    pageToken?: string;
-  };
-}) {
+export default async function Home(
+  props: {
+    searchParams?: Promise<{
+      pageToken?: string;
+    }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const pageToken = searchParams?.pageToken ?? undefined;
 
   return (
