@@ -50,7 +50,7 @@ export default async function Home({
         <nav>
           <div className="grid grid-flow-col gap-4">
             <Link
-              href="https://twitter.com/yanushi1031"
+              href="https://x.com/yanushi_sp"
               target="_blank"
               rel="noopener noreferrer"
             >
